@@ -1,7 +1,70 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import TextAnimation from "../components/TextAnimation";
 ---
 
 <Layout title="Welcome to Astro.">
-  <main class="h-screen w-screen bg-amber-200"></main>
+  <div
+    class="showcase-bg overflow-hidden pl-4 xl:pl-16 xl:pr-0 relative text-white flex-row flex h-full w-full"
+  >
+    <div
+      class="xl:relative xl:left-0 left-8 sm:left-16 z-10 absolute top-0 py-16 h-2/3 flex-1 flex flex-col"
+    >
+      <h1 @onMainTitle class="text-5xl sm:text-7xl font-bold">Bienvenue !</h1>
+      <p @onSubtitle class="text-xl">
+        sur HollyFilms
+        <span class="gradiant-animated bg-clip-text inline-block"
+          ><span class="text-2xl font-bold text-transparent">2.0</span></span
+        >
+      </p>
+      <div @onButtonInfos class="flex flex-col mt-auto">
+        <TextAnimation client:load />
+        <div class="h-10 mt-3 flex flex-row">
+          <a
+            ><button
+              class="text-black h-full bg-white font-bold rounded py-1 px-2"
+            >
+              Accéder au contenu
+            </button></a
+          >
+        </div>
+        <div class="mt-5"></div>
+      </div>
+    </div>
+    <div
+      class="xl:w-2/3 w-full opacity-60 xl:opacity-100 h-full flex-grow-0 flex-shrink-0"
+    >
+      <!--<app-showcase-medias></app-showcase-medias>-->
+    </div>
+  </div>
 </Layout>
+
+<style>
+  .gradient-colors {
+    @apply from-green-400 to-blue-500;
+  }
+
+  .gradiant-animated {
+    @apply bg-gradient-to-r gradient-colors;
+    background-size: 400% 400%;
+    animation: animated-bg 15s ease infinite;
+  }
+
+  .showcase-bg {
+    @apply bg-gradient-radial from-base-100 to-base-700;
+    background-size: 400% 400%;
+    animation: animated-bg 15s ease infinite;
+  }
+
+  @keyframes animated-bg {
+    0% {
+      background-position: 0% 0%;
+    }
+    50% {
+      background-position: -50% 100%;
+    }
+    100% {
+      background-position: 0% 0%;
+    }
+  }
+</style>
